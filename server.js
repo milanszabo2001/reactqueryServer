@@ -6,9 +6,10 @@ import fileUpload from 'express-fileupload';
 const app = express();
 app.use(cors());
 app.use(express.json())
-
+//temporary library
 app.use(fileUpload({
-    useTempFiles: true
+    useTempFiles: true,
+    tempFileDir:'/tmp/'
 }))
 
 app.use('/auth',router)
