@@ -11,8 +11,12 @@ cloudinary.config({
 });
 
 export const upload=async (file)=>{
+    try{
     const image=await cloudinary.v2.uploader.upload(file,(result)=>result)
     return image 
+    }catch(err){
+        console.log("upload hiba:",err)
+    }
 }
 
 export const removeFromCloud=(avatar_id)=>{

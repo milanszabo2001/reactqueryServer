@@ -9,7 +9,7 @@ app.use(express.json())
 //temporary library
 app.use(fileUpload({
     useTempFiles: true,
-    tempFileDir:'/tmp/'
+    //tempFileDir:'/tmp/'
 }))
 
 app.use('/auth',router)
