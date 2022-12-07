@@ -125,3 +125,22 @@ export const deleteUser=(request,response)=>{
             response.send({msg:'Sikeresen törölte a fiókját!',username:username})
     })
 }
+
+export const changePassword=(request, response)=>{
+    const {password,username} = request.body
+    bcrypt.hash(password,saltRound,(err,hashedPassword)=>{
+        if(err)
+            console.log('bcrypt hibás!',err)
+        else{console.log(hashedPassword)
+            db.query('update users set password=? where username=?',
+            [hashedPassword,username],(err,result)=>{
+                if(err){
+                    console.log('hiba az insertnél',err)
+                    response.send({msg:"Jelszó változtatás sikertelen."})
+                }else
+                    response.send({msg:"Sikeres jelszó váltás!"})
+            })
+        }
+    })
+    
+}
